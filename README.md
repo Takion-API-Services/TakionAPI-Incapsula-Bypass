@@ -1,4 +1,4 @@
-# eTicketing Login Example
+# TakionAPI Incapsula Bypass
 This repository showcases the power and versatility of the TakionAPI. It demonstrates how to bypass Incapsula's security restrictions on [eTicketing](https://www.eticketing.co.uk/arsenal/) platforms like Arsenal, as well as any other Incapsula-protected website. Additionally, it shows how to pass the reCAPTCHA challenge presented by Incapsula using the 2captcha service. The goal of this repo is to promote the TakionAPI service and provide an example implementation for clients.
 
 [![Video of an example login](https://i.imgur.com/pjLkl1y.png)](https://youtu.be/EzET_mo7fV4 "Video of an example login")
