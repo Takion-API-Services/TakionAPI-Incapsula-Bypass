@@ -7,11 +7,10 @@ from json import dumps
 from bs4 import BeautifulSoup
 from tls_client import Session
 from urllib.parse import unquote
+from dotenv import load_dotenv
+from os import getenv
 
-TAKION_API_KEY = "INCAPSULA_..."
-TWO_CAPTCHA_KEY = "..."
-USERNAME = "..."
-PASSWORD = "..."
+load_dotenv()
 
 def eticketing_login(
     session: Session, 
@@ -30,7 +29,10 @@ def eticketing_login(
 
     # Solve captcha
     cookie = solver.solve_challenge("www.eticketing.co.uk", session)
-    captcha_response = captcha.solve_captcha()
+    captcha_response = captcha.solve_captcha(
+        pageurl="https://www.eticketing.co.uk/",
+        sitekey="6LeiYKwZAAAAAPtwKo56Ad4RqtR5eyBjfxlGGZqP",
+    )
     payload = dumps({
         "data": cookie,
         "payload": captcha_response,
@@ -109,8 +111,8 @@ def eticketing_login(
 if __name__ == "__main__":
     eticketing_login(
         Session(client_identifier="chome_110"),
-        TakionAPI(TAKION_API_KEY),
-        TwoCaptcha(TWO_CAPTCHA_KEY),
-        USERNAME,
-        PASSWORD
+        TakionAPI(getenv("TAKION_API_KEY")),
+        TwoCaptcha(getenv("TWO_CAPTCHA_KEY")),
+        getenv("ETICKETING_USERNAME"),
+        getenv("ETICKETING_PASSWORD")
     )
