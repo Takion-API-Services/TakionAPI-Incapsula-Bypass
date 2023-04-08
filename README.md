@@ -18,7 +18,7 @@ This repository showcases the power and versatility of the TakionAPI. It demonst
 ### Installation
 1. Clone the repository:
 ```bash
-git clone https://github.com/yourusername/eTicketing-Login-Example.git
+git clone https://github.com/Takion-API-Services/TakionAPI-Incapsula-Bypass
 
 ```
 2. Install the required dependencies:
@@ -40,20 +40,20 @@ python eticketing.py
 ```
 Run the `ticketmaster.py` script to test the Incapsula + Geetest challenge on Ticketmaster websites:
 ```bash
-python eticketing.py
+python ticketmaster.py
 ```
 
 
 ### How It Works
 The example implementation demonstrates the following processes:
 
-1. `eticketing.py`: Bypasses Incapsula's AntiBot measures and reCAPTCHA challenges on the eTicketing platform.
+1. `eticketing.py`: Bypasses Incapsula's AntiBot measures and reCAPTCHA challenges on the [eTicketing](https://youtu.be/EzET_mo7fV4) platform.
    - Use the Takion API to bypass Incapsula's security restrictions and access the website
    - Proceed with the login process
    - Utilize the Takion API along with a solved reCAPTCHA token (in this case, from 2captcha) to bypass Incapsula's captcha challenge
    - Finalize the login process and display the logged-in user's name
 
-2. `ticketmaster.py`: Bypasses Incapsula's AntiBot measures and Geetest challenges on Ticketmaster websites (ticketmaster.co.uk and ticketmaster.nl).
+2. `ticketmaster.py`: Bypasses Incapsula's AntiBot measures and Geetest challenges on [Ticketmaster websites](https://youtu.be/YleSP8cg0ww) (ticketmaster.co.uk and ticketmaster.nl, but can be applyed everywhere).
    - Force the Geetest challenge to show up
    - Use the Takion API to bypass Incapsula's security restrictions
    - Solve the Geetest challenge using 2captcha
