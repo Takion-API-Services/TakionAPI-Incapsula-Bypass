@@ -34,7 +34,7 @@ class TakionAPI:
             logger.debug("Using custom browser details")
         logger.debug(f"Generating challenge data for {website}")
         res = send_request(
-            f"http://127.0.0.1:4777/incapsula/sensor/{website}?api_key={self.api_key}",
+            f"https://www.glizzykingdreko.live/incapsula/sensor/{website}?api_key={self.api_key}",
             method="GET",
             conditions={
                 "all": self.handle_response
