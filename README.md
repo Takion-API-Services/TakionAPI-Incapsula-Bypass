@@ -42,7 +42,7 @@ PROXY="" # Optional for ___utmvc cookie in examples/utmvc.py
 ```
 
 ### Usage
-Change the `TAKION_API_KEY` in the `.env` file to your Takion API key. If you don't have one, you can get a free trial from [our Discord server](https://https://takionapi.tech/incapsula).
+Change the `TAKION_API_KEY` in the `.env` file to your Takion API key. If you don't have one, you can get a free trial from [our Discord server](https://takionapi.tech/incapsula).
 
 Change the directory to the examples folder:
 ```bash
@@ -69,10 +69,10 @@ The repository consists of the following main files:
 To get a free trial of the Takion API service, visit [our Discord server](https://takionapi.tech/incapsula).
 
 ### Conclusion
-For more information and an example implementation of a simple Incapsula bypass without the need for captcha solving, please refer to the [official TakionAPI documentation](https://docs.takionapi.tech) or [our Discord server](https://https://takionapi.tech/incapsula).
+For more information and an example implementation of a simple Incapsula bypass without the need for captcha solving, please refer to the [official TakionAPI documentation](https://docs.takionapi.tech) or [our Discord server](https://takionapi.tech/incapsula).
 
 ### Disclaimer
 The use of this repository and the TakionAPI is intended for educational purposes and responsible, legitimate use cases. The authors of the repository and the TakionAPI are not responsible for any misuse or damage caused by the use of this software.
 
 ### Contact
-For any questions or inquiries, please contact us at [our mail](mailto:glizzykingdreko@protonmail.com) or [our Discord server](https://https://takionapi.tech/incapsula).
+For any questions or inquiries, please contact us at [our mail](mailto:glizzykingdreko@protonmail.com) or [our Discord server](https://takionapi.tech/incapsula).
