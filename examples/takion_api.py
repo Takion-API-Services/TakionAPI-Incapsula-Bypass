@@ -1,13 +1,10 @@
-from typing import List, Dict, Any, Union, Optional, Tuple, TypeVar, Generic, Callable, Type, cast, overload
-from requests import get, post, session
+from typing import Dict, Union, Tuple
 from resilient_caller import send_request, RETRY_EVENT
-from urllib3 import disable_warnings
-from urllib3.exceptions import InsecureRequestWarning
-import logging
+import logging, warnings
+warnings.filterwarnings("ignore", message="Unverified HTTPS request is being made to host")
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
-disable_warnings(InsecureRequestWarning)
 
 class TakionAPI:
     def __init__(self, api_key: str) -> None:
@@ -17,6 +14,9 @@ class TakionAPI:
     def handle_good_response(self, response: str, *_) -> Tuple[str, Dict[str, str], Dict[str, str]]:
         data = response.json()
         return data['url'], data['headers'], data['payload']
+    
+    def handle_good_general_response(self, response: str, *_) -> Tuple[str, Dict[str, str], Dict[str, str]]:
+        return response.json()
     
     def handle_response(self, response: str, *_) -> Union[Tuple[str, Dict[str, str], Dict[str, str]], RETRY_EVENT]:
         logger.debug(f"Got response: {response.status_code} / {response.json().get('message', 'No errors')}")
@@ -34,7 +34,7 @@ class TakionAPI:
             logger.debug("Using custom browser details")
         logger.debug(f"Generating challenge data for {website}")
         res = send_request(
-            f"https://www.glizzykingdreko.live/incapsula/sensor/{website}?api_key={self.api_key}",
+            f"https://takionapi.tech/incapsula/sensor/{website}?api_key={self.api_key}",
             method="GET",
             conditions={
                 "all": self.handle_response
@@ -47,7 +47,7 @@ class TakionAPI:
         )
         return res
     
-    def solve_challenge(self, website: str, session: object, browser_details: Dict[str, str]={}) -> Union[str, bool]:
+    def solve_reese84(self, website: str, session: object, browser_details: Dict[str, str]={}) -> Union[str, bool]:
         details = self.gen_challenge_data(website, browser_details)
 
         if details is None:
@@ -68,3 +68,42 @@ class TakionAPI:
         # Set cookie
         session.cookies.set("reese84", reese)
         return reese
+    
+    def solve_challenges(self, url: str, proxy: str, browser_details: Dict[str, str]={}) -> Union[str, bool]:
+        if browser_details.get("User-Agent") or browser_details.get("sec-ch-ua"):
+            logger.debug("Using custom browser details")
+        logger.debug(f"Generating challenge data for {url}")
+        res = send_request(
+            f"https://takionapi.tech/incapsula/all?api_key={self.api_key}",
+            method="POST",
+            json={
+                "url": url,
+                "proxy": proxy
+            },
+            conditions={
+                "all": self.handle_good_general_response
+            },
+            retries=3,
+            delay=3,
+            verify=False,
+            on_retry=lambda tries: logger.debug(f"Retrying solving ({tries})"),
+            headers=browser_details,
+            timeout=320
+        )
+        return res
+        
+    
+    def solve_geetest(self, challenge: str, gt: str) -> dict:
+        logger.debug(f"Solving geetest challenge: {challenge}")
+        res = send_request(
+            f"https://takionapi.tech/geetest?api_key={self.api_key}&challenge={challenge}&gt={gt}",
+            method="GET",
+            conditions={
+                "all": self.handle_good_general_response
+            },
+            retries=3,
+            delay=3,
+            verify=False,
+            on_retry=lambda tries: logger.debug(f"Retrying solving ({tries})"),
+        )
+        return res
