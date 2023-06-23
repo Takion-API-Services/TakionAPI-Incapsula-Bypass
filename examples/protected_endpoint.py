@@ -8,7 +8,7 @@ from os import getenv
 
 load_dotenv()
 
-API_KEY = "INCAPSULA_40E1EVDDV2QJPI52" # Fill it with your api key
+API_KEY = "" # Fill it with your api key
 
 # Define protected url and headers
 protected_url = "https://www.ticketmaster.com/event/1C005E959B003CA9"
